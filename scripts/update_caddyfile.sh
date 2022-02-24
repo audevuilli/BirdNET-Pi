@@ -87,8 +87,10 @@ sudo -u${USER} sed -i "s/http:\/\/birdnetpi.local:8080/${BIRDNETLOG_URL}/g" $(di
 
 if [ ! -z ${WEBTERMINAL_URL} ];then
   WEBTERMINAL_URL="$(echo ${WEBTERMINAL_URL} | sed 's/\/\//\\\/\\\//g')"
+elif [ -z ${BIRDNETPI_URL} ];then
+  WEBTERMINAL_URL="http:\/\/$(hostname).local:8080"
 else
-  WEBTERMINAL_URL="$(echo http://$(hostname).local:8888 | sed 's/\/\//\\\/\\\//g')"
+  WEBTERMINAL_URL="${BIRDNETPI_URL}:8888"
 fi
 sudo -u${USER} sed -i "s/http:\/\/birdnetpi.local:8888/${WEBTERMINAL_URL}/g" $(dirname ${my_dir})/homepage/*.html
 sudo -u${USER} sed -i "s/http:\/\/birdnetpi.local:8888/${WEBTERMINAL_URL}/g" $(dirname ${my_dir})/scripts/*.html
