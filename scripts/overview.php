@@ -20,7 +20,7 @@ if($statement == False) {
 $result = $statement->execute();
 $totalcount = $result->fetchArray(SQLITE3_ASSOC);
 
-$statement2 = $db->prepare('SELECT COUNT(*) FROM detections WHERE Date == DATE(\'now\')');
+$statement2 = $db->prepare('SELECT COUNT(*) FROM detections WHERE Date == DATE(\'now\', \'localtime\')');
 if($statement2 == False) {
   echo "Database is busy";
   header("refresh: 0;");
@@ -28,7 +28,7 @@ if($statement2 == False) {
 $result2 = $statement2->execute();
 $todaycount = $result2->fetchArray(SQLITE3_ASSOC);
 
-$statement3 = $db->prepare('SELECT COUNT(*) FROM detections WHERE TIME >= TIME(\'now\', \'localtime\', \'-1 hour\')');
+$statement3 = $db->prepare('SELECT COUNT(*) FROM detections WHERE Date == DATE(\'now\', \'localtime\') AND TIME >= TIME(\'now\', \'localtime\', \'-1 hour\')');
 if($statement3 == False) {
   echo "Database is busy";
   header("refresh: 0;");
