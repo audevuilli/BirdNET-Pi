@@ -110,4 +110,4 @@ else
   sudo -u${USER} sed -i "s/http:\/\/birdnetpi.local/${BIRDNETPI_URL}/g" $(dirname ${my_dir})/scripts/*/*.php
 fi
 
-systemctl reload caddy
+sudo systemctl reload caddy
