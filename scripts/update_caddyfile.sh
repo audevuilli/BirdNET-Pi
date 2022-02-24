@@ -75,7 +75,7 @@ sudo -u${USER} sed -i "s/https:\/\/v2.wttr.in\//https:\/\/v2.wttr.in\/"${LATITUD
 if [ ! -z ${BIRDNETLOG_URL} ];then
   BIRDNETLOG_URL="$(echo ${BIRDNETLOG_URL} | sed 's/\/\//\\\/\\\//g')"
 else
-  BIRDNETLOG_URL="$(echo http://$(hostname).local:8080 | sed 's/\/\//\\\/\\\//g')"
+  BIRDNETLOG_URL="http:\/\/$(hostname).local:8080"
 fi
 sudo -u${USER} sed -i "s/http:\/\/birdnetpi.local:8080/${BIRDNETLOG_URL}/g" $(dirname ${my_dir})/homepage/*.html
 sudo -u${USER} sed -i "s/http:\/\/birdnetpi.local:8080/${BIRDNETLOG_URL}/g" $(dirname ${my_dir})/scripts/*.html
