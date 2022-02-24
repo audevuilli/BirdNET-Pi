@@ -31,9 +31,9 @@ sudo -u ${USER} ln -fs $(dirname ${my_dir})/scripts/play.php ${EXTRACTED}
 sudo -u ${USER} ln -fs $(dirname ${my_dir})/scripts/play.css ${EXTRACTED}
 sudo -u ${USER} ln -fs $(dirname ${my_dir})/homepage/images/favicon.ico ${EXTRACTED}
 sudo -u ${USER} ln -fs ${HOME}/phpsysinfo ${EXTRACTED}
-sudo -u ${USER} cp -f $(dirname ${my_dir})/templates/phpsysinfo.ini ${HOME}/phpsysinfo/
-sudo -u ${USER} cp -f $(dirname ${my_dir})/templates/green_bootstrap.css ${HOME}/phpsysinfo/templates/
-sudo -u ${USER} cp -f $(dirname ${my_dir})/templates/index_bootstrap.html ${HOME}/phpsysinfo/templates/html
+sudo -u ${USER} ln -fs $(dirname ${my_dir})/templates/phpsysinfo.ini ${HOME}/phpsysinfo/
+sudo -u ${USER} ln -fs $(dirname ${my_dir})/templates/green_bootstrap.css ${HOME}/phpsysinfo/templates/
+sudo -u ${USER} ln -fs $(dirname ${my_dir})/templates/index_bootstrap.html ${HOME}/phpsysinfo/templates/html
 
 sudo chmod -R g+rw $(dirname ${my_dir})
 sudo chmod -R g+rw ${RECS_DIR}
@@ -47,7 +47,6 @@ elif ! grep Date $(dirname ${my_dir})/BirdDB.txt;then
 fi
 ln -sf $(dirname ${my_dir})/BirdDB.txt ${my_dir}/BirdDB.txt &&
 sudo chown pi:pi ${my_dir}/BirdDB.txt && sudo chmod g+rw ${my_dir}/BirdDB.txt
-
 
 echo "Dropping and re-creating database"
 sudo /home/pi/BirdNET-Pi/scripts/createdb.sh
